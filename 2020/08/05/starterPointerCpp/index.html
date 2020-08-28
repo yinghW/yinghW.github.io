@@ -28,7 +28,7 @@
 <meta property="og:description" content="Learning Pointer as a StarterMemory addressA pointer is the memory address of a variable. The memory address is usually a hexadecimal and usually has 8 numbers.0x at the start indicate that the number">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-06T06:52:12.000Z">
-<meta property="article:modified_time" content="2020-08-06T06:52:54.088Z">
+<meta property="article:modified_time" content="2020-08-28T01:27:11.276Z">
 <meta property="article:author" content="Yinghui Wang">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">213</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">449</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -417,24 +417,63 @@ height:50vh;
         <h1 id="Learning-Pointer-as-a-Starter"><a href="#Learning-Pointer-as-a-Starter" class="headerlink" title="Learning Pointer as a Starter"></a>Learning Pointer as a Starter</h1><h2 id="Memory-address"><a href="#Memory-address" class="headerlink" title="Memory address"></a>Memory address</h2><p>A pointer is the <strong>memory address</strong> of a variable.</p>
 <p>The memory address is usually a hexadecimal and usually has 8 numbers.<br><strong>0x</strong> at the start indicate that the number is hexadecimal.</p>
 <pre><code>0x0000B294</code></pre><p>The address of a variable can be obtained by <strong>&amp;</strong> , the address-of operator.</p>
-<pre><code>int num_addr = &amp;num</code></pre><p>To access an address, <strong>*</strong>, the dereference operator, is used.</p>
-<pre><code>num_addr = 0x0000B294
-*num_addr = 42</code></pre><h2 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h2><p>To declare a pointer, a type that the pointer pointing to,  * , and the pointer’s name need to be stated.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num_addr = &amp;num</span><br></pre></td></tr></table></figure>
+
+<p>To access an address, <strong>*</strong>, the dereference operator, is used.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_addr = <span class="number">0x0000B294</span></span><br><span class="line">*num_addr = <span class="number">42</span></span><br></pre></td></tr></table></figure>
+<h2 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h2><h3 id="The-most-basic-way-I-guess"><a href="#The-most-basic-way-I-guess" class="headerlink" title="The most basic way I guess"></a>The most basic way I guess</h3><p>To declare a pointer, a type that the pointer pointing to,  * , and the pointer’s name need to be stated.</p>
 <p>Here, the * identifies variables as pointer varables.</p>
-<pre><code>int *p;
-string *sp;</code></pre><p>It can also be declared with other variables of the same type.</p>
-<pre><code>int a(0), b = 3, *p1 = &amp;a, *p2;</code></pre><blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="built_in">string</span> *sp;</span><br></pre></td></tr></table></figure>
+<p>It can also be declared with other variables of the same type.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a(0), b = 3, *p1 = &amp;a, *p2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
 <p>In this case, int variable a holds the value of 0, int variable b holds the value of 3, pointer p1 holds the address of a and points to a’s content, pointer address p2 remains unassigned.</p>
 </blockquote>
 <p>It can also be declared in this way:</p>
-<pre><code>int* p = &amp;a, a(0), b=0;</code></pre><blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = &amp;a, a(<span class="number">0</span>), b=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
 <p>In this case, pointer p points to a, int variables a and b is declared and initialized to 0.</p>
 </blockquote>
-<p>To make things easier to read, a pointer type name can be defined.</p>
-<pre><code>typedef int* IntPtr;
-IntPtr p;</code></pre><blockquote>
+<h3 id="To-make-it-more-readable"><a href="#To-make-it-more-readable" class="headerlink" title="To make it more readable"></a>To make it more readable</h3><p>To make things easier to read, a pointer type name can be defined. The typedef line usually belong to the headers.h file.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>* IntPtr;</span><br><span class="line">IntPtr p;</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>This is equal to int *p;</p>
 </blockquote>
+<h3 id="When-there-is-no-identifier……"><a href="#When-there-is-no-identifier……" class="headerlink" title="When there is no identifier……"></a>When there is no identifier……</h3><p>To create a nameless pointer:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1;</span><br><span class="line">p1 = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">*p1 = *p1 + <span class="number">7</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The new variable is referred to as *p1. *p1 can be used as a normal int variable.</p>
+</blockquote>
+<h2 id="Usages"><a href="#Usages" class="headerlink" title="Usages"></a>Usages</h2><h3 id="Assigning-and-Transfering-Values"><a href="#Assigning-and-Transfering-Values" class="headerlink" title="Assigning and Transfering Values"></a>Assigning and Transfering Values</h3><p>After declaration, pointers can be assigned to variables.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p1, *p2 v;</span><br><span class="line">v = <span class="number">0</span>;</span><br><span class="line">p1 = &amp;v1;</span><br><span class="line">p1 = <span class="number">42</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; v1;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>Now, it will print out:</p>
+<p>42 </p>
+<p>42</p>
+<p>because *p1 and v1 refer to same stroring place now. </p>
+</blockquote>
+<p>Between pointers, value can be assigned.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p2 = p1;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>In this case, pointer p2 and p1 points to a <strong>same location</strong>. Without further change, changing *p1 will always changes *p2 to the same value.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*p2 = *p1;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>In this case, pointer p2 and p1 have a <strong>same value</strong>. Changing one of them doesn’t change both of them.</p>
+</blockquote>
+<h3 id="Dynamic-variable"><a href="#Dynamic-variable" class="headerlink" title="Dynamic variable"></a>Dynamic variable</h3><p>In C++, programmers must manually control creation and destruction of pointer variables with operators <strong>new</strong> and <strong>delete</strong>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1;</span><br><span class="line">p1 = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">*p1 = *p1 + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">delete</span> p1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Arrays-and-dynamic-arrays"><a href="#Arrays-and-dynamic-arrays" class="headerlink" title="Arrays and dynamic arrays"></a>Arrays and dynamic arrays</h3><p>So basically array is a pointer variable… that points to the position 0 of the array.</p>
+<p>Pointers can be assigned as a array, but array cannot be assigned to a pointer.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">10</span>];</span><br><span class="line">arr = p; <span class="comment">// NOT LEGAL</span></span><br><span class="line">p = arr; <span class="comment">// LEGAL</span></span><br></pre></td></tr></table></figure>
+
 
     </article>
     <!-- license  -->
@@ -443,7 +482,7 @@ IntPtr p;</code></pre><blockquote>
             <p>Author：<a href="https://yinghw.github.io">Yinghui Wang</a>
             <p>原文链接：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">https://yinghw.github.io/2020/08/05/starterPointerCpp/</a>
             <p>发表日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">August 5th 2020, 11:52:12 pm</a>
-            <p>更新日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">August 5th 2020, 11:52:54 pm</a>
+            <p>更新日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">August 27th 2020, 6:27:11 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -572,7 +611,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Learning-Pointer-as-a-Starter"><span class="toc-number">1.</span> <span class="toc-text">Learning Pointer as a Starter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-address"><span class="toc-number">1.1.</span> <span class="toc-text">Memory address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaration"><span class="toc-number">1.2.</span> <span class="toc-text">Declaration</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Learning-Pointer-as-a-Starter"><span class="toc-number">1.</span> <span class="toc-text">Learning Pointer as a Starter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-address"><span class="toc-number">1.1.</span> <span class="toc-text">Memory address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaration"><span class="toc-number">1.2.</span> <span class="toc-text">Declaration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-most-basic-way-I-guess"><span class="toc-number">1.2.1.</span> <span class="toc-text">The most basic way I guess</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#To-make-it-more-readable"><span class="toc-number">1.2.2.</span> <span class="toc-text">To make it more readable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#When-there-is-no-identifier……"><span class="toc-number">1.2.3.</span> <span class="toc-text">When there is no identifier……</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usages"><span class="toc-number">1.3.</span> <span class="toc-text">Usages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Assigning-and-Transfering-Values"><span class="toc-number">1.3.1.</span> <span class="toc-text">Assigning and Transfering Values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-variable"><span class="toc-number">1.3.2.</span> <span class="toc-text">Dynamic variable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays-and-dynamic-arrays"><span class="toc-number">1.3.3.</span> <span class="toc-text">Arrays and dynamic arrays</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
