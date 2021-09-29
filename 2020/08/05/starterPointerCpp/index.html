@@ -28,7 +28,7 @@
 <meta property="og:description" content="Learning Pointer as a StarterMemory addressA pointer is the memory address of a variable. The memory address is usually a hexadecimal and usually has 8 numbers.0x at the start indicate that the number">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-06T06:52:12.000Z">
-<meta property="article:modified_time" content="2020-08-28T05:22:26.924Z">
+<meta property="article:modified_time" content="2020-11-03T22:54:16.690Z">
 <meta property="article:author" content="Yinghui Wang">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -285,7 +285,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.5k</span>Reading time: <span class="post-count reading-time">9 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -448,7 +448,7 @@ height:50vh;
 <p>The new variable is referred to as *p1. *p1 can be used as a normal int variable.</p>
 </blockquote>
 <h2 id="Usages"><a href="#Usages" class="headerlink" title="Usages"></a>Usages</h2><h3 id="Assigning-and-Transfering-Values"><a href="#Assigning-and-Transfering-Values" class="headerlink" title="Assigning and Transfering Values"></a>Assigning and Transfering Values</h3><p>After declaration, pointers can be assigned to variables.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p1, *p2 v;</span><br><span class="line">v = <span class="number">0</span>;</span><br><span class="line">p1 = &amp;v1;</span><br><span class="line">p1 = <span class="number">42</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; v1;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p1, *p2, v1;</span><br><span class="line">v1 = <span class="number">0</span>;</span><br><span class="line">p1 = &amp;v1;</span><br><span class="line">p1 = <span class="number">42</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; v1;</span><br></pre></td></tr></table></figure>
 
 
 <blockquote>
@@ -481,7 +481,11 @@ height:50vh;
 </blockquote>
 <p>If we want to go through the dynamic array, or array, we can use for loop like that:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *(dyno + <span class="number">1</span>); <span class="comment">// equals to cout &lt;&lt; dyno[i];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>Now, let’s try to play with pointer a bit.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> num[<span class="number">5</span>];</span><br><span class="line">   <span class="keyword">int</span>* p;</span><br><span class="line">   p = num;</span><br><span class="line">   *p = <span class="number">10</span>;</span><br><span class="line">   p++;</span><br><span class="line">   *p = <span class="number">20</span>;</span><br><span class="line">   p = &amp;num[<span class="number">2</span>];</span><br><span class="line">   *p = <span class="number">30</span>;</span><br><span class="line">   p = num + <span class="number">3</span>;</span><br><span class="line">   *p = <span class="number">40</span>;</span><br><span class="line">   p = num;</span><br><span class="line">   *(p + <span class="number">4</span>) = <span class="number">50</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">       <span class="built_in">cout</span> &lt;&lt; num[i] &lt;&lt; <span class="string">", "</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>They are all legal pointer declaration!</p>
+</blockquote>
 <h3 id="Linked-List"><a href="#Linked-List" class="headerlink" title="Linked List"></a>Linked List</h3><p>Declarations in examples:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    LinkNode *link;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> LinkNode* LinkNodePtr;</span><br></pre></td></tr></table></figure>
 <p>To insert a new node at the head of the list:</p>
@@ -507,13 +511,18 @@ height:50vh;
             <p>Author：<a href="https://yinghw.github.io">Yinghui Wang</a>
             <p>原文链接：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">https://yinghw.github.io/2020/08/05/starterPointerCpp/</a>
             <p>发表日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">August 5th 2020, 11:52:12 pm</a>
-            <p>更新日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">August 27th 2020, 10:22:26 pm</a>
+            <p>更新日期：<a href="https://yinghw.github.io/2020/08/05/starterPointerCpp/">November 3rd 2020, 2:54:16 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/11/03/starterClass/" title= "Class for starter">
+                    <div class="nextTitle">Class for starter</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -667,9 +676,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -700,6 +716,20 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/07/25/hello-world/" >Hello World</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span><a class="archive-post-title" href= "/2020/11/03/starterClass/" >Class for starter</a>
         </li>
     
     </div>
